@@ -120,6 +120,15 @@ def progress_advance():
 def progress_complete():
     sys.stdout.write("\n")
 
+def get_fork_parent(repo):
+    data = get_data("/repos/%s" % repo)
+    print(data["parent"])
+    return data["parent"]["full_name"]
+
+def is_fork(repo):
+    data = get_data("/repos/%s" % repo)
+    return data["fork"]
+
 def get_user_name(login):
     user = get_data("/users/%s" % login)
     if user["name"] is None: user["name"] = login

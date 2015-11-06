@@ -17,11 +17,25 @@ def main():
 
   repo_name = args.repo_name
 
+
   if not repo_exists(repo_name): 
     print("Repo does not exist: %s" % repo_name)
     sys.exit(1)
 
   code_contributors = get_code_contributors(repo_name)
+
+  if is_fork(repo_name):
+    parent = get_fork_parent(repo_name)
+    parent_contributors = get_code_contributors(parent)
+
+    unique = []
+    for user in code_contributors:
+      if user["user_name"] not in [k["user_name"] for k in parent_contributors]:
+        unique.append(user)
+  
+    print([k["user_name"] for k in unique])
+    code_contributors = unique
+    
   code_commentors = get_code_commentors(repo_name, args.limit)
 
   non_code_contributors = []
