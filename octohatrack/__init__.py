@@ -51,7 +51,7 @@ def main():
     html_file = "%s_contrib.html" % repo_name.replace("/", "_")
     f = open(html_file, "w")
 
-    f.write("<style>div.contributors > div {display:inline-block; padding: 10px;} div.contributors > div > div { text-align: center; padding: 5px} footer {padding-top: 40px}</style>")
+    f.write("<style>div.contributors > div {display:inline-block; padding: 10px;} div.contributors > div > div { text-align: center; padding: 5px} footer {padding-top: 40px} h1, h2, h3 {font-weight: normal;}</style>")
     f.write("<h1>Non-code contributions for %s</h1>" % repo_name)
     f.write("<div class='contributors'>")
 
